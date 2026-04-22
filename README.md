@@ -115,7 +115,7 @@ const splitPdf_fn = () => {
 }
 splitPdf_fn()
 ```
-### range (split each page of pdf as separate pdf file for given range , ex: 10, 15 => output => 10.pdf , 11.pdf .... to 15.pdf)
+### range (split each page of pdf as separate pdf file for given range , ex: 10, 15 => output => 10.pdf , 11.pdf .... to 15.pdf, give range inside option  pageNumbers field)
 ### commonjs
 
 ```javascript
@@ -158,7 +158,7 @@ const splitPdf_fn = () => {
 splitPdf_fn()
 ```
 
-### pagenumber (split each page of pdf as separate pdf file for given page numbers , ex : 10, 15 => output => 10.pdf, 15.pdf)
+### pagenumber (split each page of pdf as separate pdf file for given page numbers , ex : 10, 15 => output => 10.pdf, 15.pdf, give pagenumber inside option  pageNumbers field)
 ### commonjs
 
 ``` javascript
@@ -224,7 +224,7 @@ const option = {
 }
 
 ```
-option for range
+#### option for range
 ``` javascript
 const option = {
     mode: "range",
