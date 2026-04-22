@@ -43,21 +43,35 @@ const mergePdf_fn = async () => {
 mergePdf_fn()
 
 ```
-### merge_pdf accept one argument
-### array of pdf paths
 
-#### Path must be Array of string
-#### Path min length 2
-#### Add as many pdf paths you want
+## Input
+
+### merge_pdf accepts one argument:
+
+### An array of PDF file paths
+
+## Rules
+### Must be an array of strings
+### Minimum 2 file paths required
+### You can add as many PDF files as needed
 
 
 <hr>
 
-### merge_pdf return object with two values
-### 1. success (Boolean) => true only if merge successfull
-### 2. data (final raw pdf data) => need to save as pdf
-###  data will not return if success is false
+## Output
 
+### merge_pdf returns an object:
+
+```javascript
+{
+  success: Boolean,
+  data: Buffer
+}
+```
+### Fields
+### success => true only if merge is successful
+### data => final merged PDF (raw buffer, must be saved as .pdf)
+### If success = false, data will NOT be returned
 
 
 
