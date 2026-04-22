@@ -1,6 +1,6 @@
 {
   "name": "pdf-merge-split",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Fast and simple PDF merge and split library for Node.js",
   "main": "index.js",
   "scripts": {

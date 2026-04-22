@@ -217,6 +217,30 @@ splitPdf_fn()
   * pagenumber (split each page of pdf as separate pdf file for given page numbers , ex : 10, 15 => output => 10.pdf, 15.pdf)
 * pageNumbers (Array of Number) (total length must be excat 2) (only required for mode range and pagenumber)
 
+#### option for allpagesplit
+```javascript
+const option = {
+    mode: "allpagesplit"
+}
+
+```
+option for range
+``` javascript
+const option = {
+    mode: "range",
+    pageNumbers: [10,15]
+}
+```
+#### option for pagenumber
+```javascript
+const option = {
+   mode: 'pagenumber',
+   pageNumbers: [10,15]
+}
+```
+
+
+
 ### Output
 
 
