@@ -1,14 +1,30 @@
 {
-  "name": "pdf-tools",
-  "version": "1.0.0",
-  "description": "",
+  "name": "pdf-merge-split",
+  "version": "1.0.1",
+  "description": "Fast and simple PDF merge and split library for Node.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+  "pdf",
+  "pdf merge",
+  "pdf split",
+  "merge pdf",
+  "split pdf",
+  "nodejs pdf",
+  "javascript pdf"
+],
+"repository": {
+  "type": "git",
+  "url": "https://github.com/prajapati-satyam/pdf-merge-split"
+},
+"homepage": "https://github.com/prajapati-satyam/pdf-merge-split",
+"bugs": {
+  "url": "https://github.com/prajapati-satyam/pdf-merge-split"
+},
   "author": "Satyam Prajapati",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "pdf-lib": "^1.17.1"
