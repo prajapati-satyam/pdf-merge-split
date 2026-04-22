@@ -44,23 +44,23 @@ mergePdf_fn()
 
 ```
 
-## Input
+### Input
 
-### merge_pdf accepts one argument:
+#### merge_pdf accepts one argument:
 
-### An array of PDF file paths
+* An array of PDF file paths
 
-## Rules
-### Must be an array of strings
-### Minimum 2 file paths required
-### You can add as many PDF files as needed
+### Rules
+* Must be an array of strings
+* Minimum 2 file paths required
+* You can add as many PDF files as needed
 
 
 <hr>
 
-## Output
+### Output
 
-### merge_pdf returns an object:
+#### merge_pdf returns an object:
 
 ```javascript
 {
@@ -68,10 +68,7 @@ mergePdf_fn()
   data: Buffer
 }
 ```
-### Fields
-### success => true only if merge is successful
-### data => final merged PDF (raw buffer, must be saved as .pdf)
-### If success = false, data will NOT be returned
 
-
-
+* success => true only if merge is successful
+* data => final merged PDF (raw buffer, must be saved as .pdf)
+* If success = false, data will NOT be returned
