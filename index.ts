@@ -9,9 +9,11 @@
 //     success: boolean,
 //     data: Uint8Array
 // }
-const fs = require("fs");
+// const fs = require("fs");
 
-const { PDFDocument } = require("pdf-lib");
+// const { PDFDocument } = require("pdf-lib");
+import fs from "fs";
+import { PDFDocument } from "pdf-lib";
 
 async function merge_pdf(pdfpaths: any[]) {
   if (pdfpaths.length < 2) {
@@ -302,4 +304,4 @@ async function split_pdf(inputpath: string, option: any) {
   }
 }
 
-module.exports = { merge_pdf, split_pdf };
+export = { merge_pdf, split_pdf };

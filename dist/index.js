@@ -1,6 +1,10 @@
+"use strict";
 // import fs from "fs"
 // import {PDFDocument} from "pdf-lib"
 // import { buffer } from "stream/consumers"
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 // type success_obj = {
 //     success: boolean
 // }
@@ -8,8 +12,10 @@
 //     success: boolean,
 //     data: Uint8Array
 // }
-const fs = require("fs");
-const { PDFDocument } = require("pdf-lib");
+// const fs = require("fs");
+// const { PDFDocument } = require("pdf-lib");
+const fs_1 = __importDefault(require("fs"));
+const pdf_lib_1 = require("pdf-lib");
 async function merge_pdf(pdfpaths) {
     if (pdfpaths.length < 2) {
         console.log(new Error("Atleast 2 pdfs are required to merge"));
@@ -23,7 +29,7 @@ async function merge_pdf(pdfpaths) {
     for (let i = 0; i < pdfpaths.length; i++) {
         let chunks = [];
         await new Promise((resolve, reject) => {
-            const stream = fs.createReadStream(pdfpaths[i]);
+            const stream = fs_1.default.createReadStream(pdfpaths[i]);
             stream.on("data", (chunk) => {
                 chunks.push(chunk);
             });
@@ -44,14 +50,14 @@ async function merge_pdf(pdfpaths) {
     let existingPdf = [];
     // load data in pdf document
     for (let i = 0; i < pdfBytesLoad.length; i++) {
-        const loadpdf = await PDFDocument.load(pdfBytesLoad[i]);
+        const loadpdf = await pdf_lib_1.PDFDocument.load(pdfBytesLoad[i]);
         existingPdf.push(loadpdf);
     }
     // console.log("length of existing pdf : ", existingPdf.length);
     // console.log("existing pdf data : ", existingPdf);
     // making final pdf
     // let bytesOfFinalPdf = [];
-    const final_pdf = await PDFDocument.create();
+    const final_pdf = await pdf_lib_1.PDFDocument.create();
     for (let i = 0; i < existingPdf.length; i++) {
         const copyPages = await final_pdf.copyPages(existingPdf[i], existingPdf[i].getPageIndices());
         copyPages.forEach((page) => {
@@ -68,7 +74,7 @@ async function merge_pdf(pdfpaths) {
 // range, pagenumbers, allpagesplit
 async function split_pdf(inputpath, option) {
     if (!inputpath ||
-        !(fs.existsSync(inputpath)) ||
+        !(fs_1.default.existsSync(inputpath)) ||
         !option ||
         inputpath === null ||
         inputpath === undefined ||
@@ -83,16 +89,16 @@ async function split_pdf(inputpath, option) {
     //   console.log("only one parameter can be execute at once")
     //   process.exit(1);
     // }
-    const existingPdfBytes = fs.readFileSync(inputpath);
+    const existingPdfBytes = fs_1.default.readFileSync(inputpath);
     // for if user give all page split true
     if (option.mode === "allpagesplit") {
         const finalAllPdfBytes = [];
-        const existingPdf = await PDFDocument.load(existingPdfBytes);
+        const existingPdf = await pdf_lib_1.PDFDocument.load(existingPdfBytes);
         // const newPdf = await PDFDocument.create();
         const page_count = existingPdf.getPageIndices();
         // const random_dir = fs.mkdtempSync("hello split");
         for (let i = 0; i < page_count.length; i++) {
-            const singlePagePdf = await PDFDocument.create();
+            const singlePagePdf = await pdf_lib_1.PDFDocument.create();
             const [page] = await singlePagePdf.copyPages(existingPdf, [i]);
             singlePagePdf.addPage(page);
             const pdfBytes = await singlePagePdf.save();
@@ -128,7 +134,7 @@ async function split_pdf(inputpath, option) {
             option.pageNumbers[0]++;
         }
         // console.log("i am page count ", page_count2)
-        const existingPdf = await PDFDocument.load(existingPdfBytes);
+        const existingPdf = await pdf_lib_1.PDFDocument.load(existingPdfBytes);
         // const newPdf = await PDFDocument.create();
         // check input range is not greater than total pdf length
         if (page_count2.length > existingPdf.getPageCount()) {
@@ -140,7 +146,7 @@ async function split_pdf(inputpath, option) {
         }
         // const random_dir = fs.mkdtempSync("hello split");
         for (let i = 0; i < page_count2.length; i++) {
-            const singlePagePdf = await PDFDocument.create();
+            const singlePagePdf = await pdf_lib_1.PDFDocument.create();
             const [page] = await singlePagePdf.copyPages(existingPdf, [
                 page_count2[i] - 1,
             ]);
@@ -169,7 +175,7 @@ async function split_pdf(inputpath, option) {
             };
             return obj;
         }
-        const existingPdf = await PDFDocument.load(existingPdfBytes);
+        const existingPdf = await pdf_lib_1.PDFDocument.load(existingPdfBytes);
         for (let i = 0; i < option.pageNumbers.length; i++) {
             if (option.pageNumbers[i] > existingPdf.getPageCount()) {
                 console.log(new Error("Page Numbers can't exceed Tottalpages of PDF"));
@@ -184,7 +190,7 @@ async function split_pdf(inputpath, option) {
         let finalAllPdfBytes = [];
         for (let i = 0; i < option.pageNumbers.length; i++) {
             const pageIndex = option.pageNumbers[i] - 1;
-            const singlePagePdf = await PDFDocument.create();
+            const singlePagePdf = await pdf_lib_1.PDFDocument.create();
             const [page] = await singlePagePdf.copyPages(existingPdf, [
                 pageIndex,
             ]);
@@ -207,5 +213,4 @@ async function split_pdf(inputpath, option) {
     }
 }
 module.exports = { merge_pdf, split_pdf };
-export {};
 //# sourceMappingURL=index.js.map
